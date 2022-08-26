@@ -2,11 +2,22 @@ const Header = () => {
   const style = {
     height : "75px"
   }
+  const color ={
+    color : "rgb(172, 171, 171)"
+  }
   return (
     <>
-      <nav className="navbar sticky-top flex-md-nowrap navbar-expand navbar-dark bg-white ps-md-3" aria-label="Second navbar example" style={style}>
-        <div className="container-fluid">
-          <p className="navbar-brand text-dark fs-4 m-0 p-0" href="/">Always expand</p>
+      <nav className="navbar sticky-top flex-md-nowrap navbar-expand navbar-dark bg-white ps-md-3 position-sticky" aria-label="Second navbar example" style={style}>
+        <div className="container-fluid h-100">
+          <div className="navbar-brand text-dark fs-4 m-0 p-0 d-flex col-md-7 h-100">
+            <div className="col-md-1 col-12 h-100 rounded-circle border"> 
+              <img className="col-12 h-100 rounded-circle border-0" src="" alt=""/>
+            </div>
+            <div className="ms-2 ms-md-3">
+              <h3 className="fs-2 m-0 p-0">fff</h3>
+              <p className="fs-6 m-0 p-0 pb-2" style={color}>dd</p>
+            </div>
+          </div>
           <div className="">
             <ul className="navbar-nav me-auto me-md-3">
               <li className="me-2">

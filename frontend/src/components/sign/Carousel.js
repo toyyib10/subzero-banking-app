@@ -4,7 +4,6 @@ const download = require('../../images/download.jpg');
 
 const Carousel = () => {
   const style = {
-    borderRadius : "30px 0px 0px 30px",
     height : "100%"
   }
   return (

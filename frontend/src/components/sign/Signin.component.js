@@ -1,5 +1,6 @@
 import Button from '../Button'
 import Input from './Input';
+import {Link} from "react-router-dom"
 
 const SignupComponent = () => {
   const style = {
@@ -24,8 +25,8 @@ const SignupComponent = () => {
           <Button todo={"Login"}/>
           <h5 className="m-0 mt-4 text-white">OR</h5>
           <div className="w-100 d-flex justify-content-between align-items-center ">
-            <a href="/" className="text-white w-50 me-2">Sign in with Google</a> |
-            <a href="/" className="w-50 text-white">Create an Account</a>
+            <Link to="#" className="text-white w-50 me-2">Sign in with Google</Link> |
+            <Link to="/signup" className="w-50 text-white">Create an Account</Link>
           </div>
         </form>  
       </center>

@@ -15,7 +15,7 @@ const Money = ({component , col , colBg, col2 ,col3 , text , amount}) => {
             <svg className="pt-2 pe-2" xmlns="http://www.w3.org/2000/svg" width="1.4em" height="1.4em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 23 24"><path fill={col2} d="M12 5.217a2.608 2.608 0 1 1 0-5.216a2.608 2.608 0 0 1 0 5.216zm8.609 0a2.608 2.608 0 1 1 0-5.216a2.608 2.608 0 0 1 0 5.216zm-18 0a2.608 2.608 0 1 1 0-5.216a2.608 2.608 0 0 1 0 5.216zM12 14.608a2.608 2.608 0 1 1 0-5.216a2.608 2.608 0 0 1 0 5.216zm8.609 0a2.608 2.608 0 1 1 0-5.216a2.608 2.608 0 0 1 0 5.216zm-18 0a2.608 2.608 0 1 1 0-5.216a2.608 2.608 0 0 1 0 5.216zM12 23.999a2.608 2.608 0 1 1 0-5.216A2.608 2.608 0 0 1 12 24zm8.609 0a2.608 2.608 0 1 1 0-5.216a2.608 2.608 0 0 1 0 5.216zm-18 0a2.608 2.608 0 1 1 0-5.216a2.608 2.608 0 0 1 0 5.216z"/></svg>
           </div>
         </div>
-        <div className="mt-3 px-2">
+        <div className="mt-2 px-2">
           <p className="m-0" style={style}>
             {text}
           </p>

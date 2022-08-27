@@ -6,7 +6,7 @@ import TransactionReview from "./TransactionReview";
 
 const Main = () => {
   const style = {
-    height: "60%"
+    height: "63%"
   }
   const other = {
     height : "40%"
@@ -34,18 +34,21 @@ const Main = () => {
     marginTop : "20px"
   }
   const height = {
-    height : "25%"
+    height : "30%"
   }
   const style2 = {
     color : "rgb(172, 171, 171)",
     textDecoration : "none"
+  }
+  const quick = {
+    height : "60%"
   }
   return (
     <>
       <div className="w-100 d-flex flex-wrap px-md-4 px-2 pt-3" style={style}>
           <div className=" h-100 col-md-8 col-12 mb-md-0 mb-3">
             {/* MONEY */}
-            <div className="bg-light w-100 d-md-flex justify-content-between align-items-center pe-md-3 pe-0 d-none" style={other}>
+            <div className="bg-light w-100 d-md-flex justify-content-between align-items-center pe-md-3 pe-0 d-none " style={other}>
               <Money component={color} col = {"rgb(172, 255, 47)"} colBg = {colBg} col2={"white"} col3={design} text={"Total balance"} amount={"3000000"}/>
               <Money component={color2} col = {"black"} colBg = {col} col2 = {"black"} col3={design2} text={"Total spending"} amount={"3000000"}/>
               <Money component={color2} col = {"black"} colBg = {col} col2 = {"black"} col3={design2} text={"Total saved"} amount={"3000000"}/>
@@ -55,22 +58,22 @@ const Main = () => {
               <Phone/>
             </div>
             {/* QUICK ACTIONS */}
-            <div className="w-100 mt-md-0 pt-md-3 pe-md-3 pe-0 pt-3" style={style}>
+            <div className="w-100 mt-md-0 pt-md-3 pe-md-3 pe-0" style={quick}>
               <QuickActions/>
             </div>
           </div>
-          <div className="h-100 col-md-4 col-12 mt-md-0" style={merge}>
+          <div className="col-md-4 col-12 mt-md-0" style={merge}>
             <TransactionReview/>
           </div>
-        </div>
-        <div className="w-100 mt-3 p-4 pb-0 pt-0" style={height}>
-          <div className="bg-white shadow w-100 h-100 rounded-1">
-            <div className="d-flex w-100 justify-content-between p-2">
-              <p className="fs-4">Recent Wallet</p>
-              <a href="/" className="mt-1" style={style2}>View all</a>
-            </div>
+      </div>
+      <div className="w-100 mt-3 px-4" style={height}>
+        <div className="bg-white shadow w-100 h-100 rounded-1">
+          <div className="d-flex w-100 justify-content-between px-4 pt-2">
+            <p className="fs-4">Recent Wallet</p>
+            <a href="/" className="mt-1" style={style2}>View all</a>
           </div>
         </div>
+      </div>
     </>
   )
 }

@@ -2,7 +2,7 @@ import Button from '../Button'
 import Input from './Input';
 import {Link} from "react-router-dom"
 
-const SignupComponent = () => {
+const SigninComponent = ({setemail, setpassword, signIn}) => {
   const style = {
     height : "inherit",
     
@@ -16,13 +16,13 @@ const SignupComponent = () => {
         <form className="row col-10 needs-validation rounded pt-2 pb-3 h-100 bg-dark" style ={style} novalidate>
           <div className="text-center fs-2 mb-4" style={color}>Login</div>
           <div>
-            <Input name={"Email"} type={"email"}  />
+            <Input name={"Email"} type={"email"}  setvalue={setemail}/>
           </div>
           <div>
-            <Input name={"Password"} type={"password"}/>
+            <Input name={"Password"} type={"password"} setvalue={setpassword}/>
           </div>
           
-          <Button todo={"Login"}/>
+          <Button todo={"Login"} sign={signIn}/>
           <h5 className="m-0 mt-4 text-white">OR</h5>
           <div className="w-100 d-flex justify-content-between align-items-center ">
             <Link to="#" className="text-white w-50 me-2">Sign in with Google</Link> |
@@ -34,4 +34,4 @@ const SignupComponent = () => {
   )
 }
 
-export default SignupComponent;
+export default SigninComponent;

@@ -1,16 +1,47 @@
 import Carousel from "../components/sign/Carousel";
 import SignupComponent from "../components/sign/Signup.component";
+import axios from 'axios';
+import {useState} from 'react'
+import {useNavigate} from 'react-router-dom';
 
 const Signup = () => {
   const style = {
     height: "95%",
+  }
+  const navigate = useNavigate() 
+  const [message, setmessage] = useState("");
+  const [firstname, setfirstname] = useState("");
+  const [lastname, setlastname] = useState(""); 
+  const [email, setemail] = useState("");
+  const [phonenumber, setphonenumber] = useState("");
+  const [password, setpassword] = useState("");
+  const [pin, setpin] = useState("");
+  const [image, setimage] = useState("");
+
+  const signUp = (e) => {
+    if (firstname === "" || lastname === "" || email === "" || phonenumber === "" || password === ""){
+    } else {
+      e.preventDefault()
+      const endPoint = "http://localhost:5000/signup"
+      let information = {firstname, lastname , email , phonenumber , password, pin, image}
+      axios.post(endPoint , information).then((result) => {
+        navigate("/signin")
+      }).catch((err)=>{
+        console.log(err)
+      })
+      axios.get(endPoint).then((result) => {
+        if(result === "Email already exists"){
+          setmessage(result.data.message)
+        }
+      })
+    }
   }
   return (
     <>
       <center className="pt-5 h-100">
         <div className="d-flex bg-white flex-wrap shadow col-md-9 col-10 p-0" style={style}>
           <Carousel/>
-          <SignupComponent/>
+          <SignupComponent  setfirstname={setfirstname} setlastname={setlastname} setemail={setemail} setphonenumber={setphonenumber} setpassword={setpassword} setpin={setpin} setimage={setimage} sign={signUp} />
         </div>
       </center>
     </>

@@ -1,4 +1,4 @@
-const Button = ({todo}) => {
+const Button = ({todo , sign}) => {
   const style = {
     backgroundColor : "rgb(172, 255, 47)",
   }
@@ -6,7 +6,7 @@ const Button = ({todo}) => {
     <>
       <div className="mt-2">
         <center>
-          <button className="btn btn-lg text-white fw-2 w-75" style={style} type="submit">{todo}</button>
+          <button className="btn btn-lg text-white fw-2 w-75" style={style} type="button" onClick={(e) => sign(e)}>{todo}</button>
         </center>
       </div> 
     </>

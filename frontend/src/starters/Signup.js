@@ -24,8 +24,12 @@ const Signup = () => {
       e.preventDefault()
       const endPoint = "http://localhost:5000/signup"
       let information = {firstname, lastname , email, username , password, pin, image}
+      const amountEndPoint = "http://localhost:5000/dashboard/main"
+      let amountTotal = {email, balance : "1000000", spent : "0", saved : "0"}
       axios.post(endPoint , information).then((result) => {
-        navigate("/signin")
+        axios.post(amountEndPoint, amountTotal).then((result) => {
+          navigate("/signin")
+        })
       }).catch((err)=>{
         console.log(err)
       })

@@ -1,7 +1,7 @@
 import Carousel from "../components/sign/Carousel";
 import SigninComponent from "../components/sign/Signin.component";
 
-const Signup = ({signIn, setemail, setpassword}) => {
+const Signin = ({signIn, setemail, setpassword}) => {
   const style = {
     height: "90%",
   }
@@ -18,4 +18,4 @@ const Signup = ({signIn, setemail, setpassword}) => {
   )
 }
 
-export default Signup;
+export default Signin;

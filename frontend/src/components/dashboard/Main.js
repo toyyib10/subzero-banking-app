@@ -4,7 +4,7 @@ import Phone from "./Phone";
 import QuickActions from "./QuickActions";
 import TransactionReview from "./TransactionReview";
 
-const Main = ({result}) => {
+const Main = ({result, amount}) => {
   const style = {
     height: "63%"
   }
@@ -43,15 +43,18 @@ const Main = ({result}) => {
   const quick = {
     height : "60%"
   }
+  let balance = amount.balance;
+  let spent = amount.spent;
+  let saved = amount.saved;
   return (
     <>
       <div className="w-100 d-flex flex-wrap px-md-4 px-2 pt-3" style={style}>
           <div className=" h-100 col-md-8 col-12 mb-md-0 mb-3">
             {/* MONEY */}
             <div className="bg-light w-100 d-md-flex justify-content-between align-items-center pe-md-3 pe-0 d-none " style={other}>
-              <Money component={color} col = {"rgb(172, 255, 47)"} colBg = {colBg} col2={"white"} col3={design} text={"Total balance"} amount={"3000000"}/>
-              <Money component={color2} col = {"black"} colBg = {col} col2 = {"black"} col3={design2} text={"Total spending"} amount={"3000000"}/>
-              <Money component={color2} col = {"black"} colBg = {col} col2 = {"black"} col3={design2} text={"Total saved"} amount={"3000000"}/>
+              <Money component={color} col = {"rgb(172, 255, 47)"} colBg = {colBg} col2={"white"} col3={design} text={"Total balance"} amount={balance}/>
+              <Money component={color2} col = {"black"} colBg = {col} col2 = {"black"} col3={design2} text={"Total spending"} amount={spent}/>
+              <Money component={color2} col = {"black"} colBg = {col} col2 = {"black"} col3={design2} text={"Total saved"} amount={saved}/>
             </div>
             {/* PHONE */}
             <div className="w-100 h-50 d-md-none pb-2 pt-1 pe-0 d-flex justify-content-center shadow bg-dark rounded-1" style={other}>

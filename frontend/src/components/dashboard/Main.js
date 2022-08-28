@@ -4,7 +4,7 @@ import Phone from "./Phone";
 import QuickActions from "./QuickActions";
 import TransactionReview from "./TransactionReview";
 
-const Main = () => {
+const Main = ({result}) => {
   const style = {
     height: "63%"
   }

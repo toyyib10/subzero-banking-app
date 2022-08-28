@@ -1,4 +1,4 @@
-const Header = () => {
+const Header = ({result}) => {
   const style = {
     height : "75px"
   }
@@ -16,11 +16,14 @@ const Header = () => {
           </div>
           <div className="navbar-brand text-dark fs-4 d-flex h-100 col-lg-8 col-md-6 ms-md-1 me-lg-3 p-md-2 p-lg-1 ms-3 col-2">
             <div className="col-md-2 col-lg-1 col-12 h-100 rounded-circle border"> 
-              <img className="col-12 h-100 rounded-circle border-0" src="" alt=""/>
+              <img className="col-12 h-100 rounded-circle border-0" src={result.image} alt=""/>
             </div>
             <div className="ms-2 ms-md-3">
-              <h3 className="fs-2 m-0 p-0">fff</h3>
-              <p className="fs-6 m-0 p-0 pb-2" style={color}>dd</p>
+              <h3 className="fs-2 m-0 p-0">Hi {result.lastname},</h3>
+              <p className="fs-6 m-0 p-0 pb-2" style={color}>
+                Welcome
+                &#128075;
+              </p>
             </div>
           </div>
           <div className="d-flex justify-content-between p-3 me-md-3">

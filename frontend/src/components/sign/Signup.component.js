@@ -2,7 +2,7 @@ import Button from '../Button'
 import Input from './Input';
 import {Link} from 'react-router-dom'
 
-const SignupComponent = ({setfirstname, setlastname, setemail, setphonenumber, setpassword, setpin, setimage, signUp}) => {
+const SignupComponent = ({setfirstname, setlastname, setemail, setusername, setpassword, setpin, setimage, signUp}) => {
   const style = {
     height : "inherit",
   }
@@ -17,11 +17,11 @@ const SignupComponent = ({setfirstname, setlastname, setemail, setphonenumber, s
           <Input name={"First Name"} setvalue={setfirstname}/>
           <Input name={"Last Name"} setvalue={setlastname}/>
           <Input name={"Email"} type={"email"} setvalue={setemail}/>
-          <Input name={"Phone Number"} type={"number"} setvalue={setphonenumber}/>
+          <Input name={"Username"} setvalue={setusername}/>
           <Input name={"Password"} type={"password"} setvalue={setpassword}/>
           <Input name={"pin"} type={"hidden"} setvalue={setpin}/>
           <Input name={"image"} type={"hidden"} setvalue={setimage}/>
-          <Button todo={"Create an Account"} signUp={signUp}/>
+          <Button todo={"Create an Account"} sign={signUp}/>
           <h5 className="m-0 mt-2 text-white">OR</h5>
           <div className="w-100 d-flex justify-content-between align-items-center h-100 mb-2">
             <Link to="#" className="text-white w-50 me-2">Sign up with Google</Link> <span className="text-white">|</span>

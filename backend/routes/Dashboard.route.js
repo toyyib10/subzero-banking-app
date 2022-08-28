@@ -1,7 +1,9 @@
 const express = require("express")
 const router = express.Router()
+const UploadFiles = require("./Upload.route")
 
-router.get('/', (req, res) => {
+router.use("/upload", UploadFiles)
+// router.get('/', (req, res) => {
   
-})
-module.exports = router
+// })
+module.exports = router;

@@ -1,6 +1,6 @@
 import Button from "../Button"
 
-const Completevr = ({userinfo, submit, setid, setimage, setnewpin, setconfirmpin}) => {
+const Completevr = ({userinfo, submit, setimage, setnewpin, setconfirmpin}) => {
   const covertToString = (e) => {
     let myImage = e.target.files[0]
     let reader = new FileReader()

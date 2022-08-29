@@ -3,29 +3,38 @@ import Header from "../components/dashboard/Header";
 import {Routes , Route, useNavigate} from 'react-router-dom'
 import Main from "../components/dashboard/Main";
 import SendMoney from "../components/dashboard/SendMoney";
+import AddMoney from "../components/dashboard/AddMoney";
 import Completevr from "../components/dashboard/Completevr";
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import axios from "axios"
 
-const Dashboard = ({userinfo ,setuserinfo, amount}) => {
+const Dashboard = () => {
   const navigate = useNavigate()
   const [image, setimage] = useState("");
   const [newpin, setnewpin] = useState("")
   const [confirmpin, setconfirmpin] = useState("")
-  const [id, setid] = useState("")
+  const [email, setemail] = useState("")
+  useEffect(() => {
+    setemail(localStorage.email)
+    console.log(email)
+  }, [])
   const submit = () => {
-    setid(userinfo._id)
+    let email = userinfo.email
     if (image === "" || newpin === "" || confirmpin === ""){
     } else {
       if (newpin !== confirmpin){
         console.log("ddddj") 
       } else {
         const endPoint = "http://localhost:5000/dashboard/upload";
-        let userDetails = {image, confirmpin, id};
+        let userDetails = {image, confirmpin, email};
         axios.post(endPoint,userDetails).then((response)=>{
+          console.log(userinfo.email)
           setuserinfo(response.data)
           console.log(response)
-          // navigate("/signin")
+          if (response.data) {
+            console.log(response.data)
+          }
+          navigate("/dashboard")
         })
       }
     }
@@ -38,11 +47,11 @@ const Dashboard = ({userinfo ,setuserinfo, amount}) => {
         <SideBar/>     
         <main className="col-md-9 ms-sm-auto col-lg-10 px-md-1">  
           <Routes>
-            {/* {userinfo.image?<Route path="/" element={<Main result={userinfo}/>}/>:<Route path="/" element={<Completevr userinfo={userinfo} submit={submit} setimage={setimage} setnewpin={setnewpin} setconfirmpin={setconfirmpin} setid={setid}/>}/> } */}
             <Route path="/" element={<Main result={userinfo} amount= {amount}/>}/>
+            <Route path="/completevr" element={<Completevr userinfo={userinfo}submit={submit} setimage={setimage} setnewpin={setnewpin} setconfirmpin={setconfirmpin}/>}/>
             <Route />
-            <Route path="/addmoney"/>
-            <Route path="/sendmoney" element = {<SendMoney amount = {amount}/>}/>
+            <Route path="/addmoney" element={<AddMoney result={userinfo}/>}/>
+            <Route path="/sendmoney" element = {<SendMoney amount = {amount} result={userinfo}/>}/>
             <Route path="/quickactions"/>
             <Route path="/wallets"/>
             <Route path="/history"/>

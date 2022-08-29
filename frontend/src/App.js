@@ -7,9 +7,8 @@ import axios from "axios"
 import {useState} from "react"
 
 const App = () => {
-  const navigate =useNavigate()
+  const navigate = useNavigate()
   const [userinfo,setuserinfo] = useState("")
-  const [amount,setamount] = useState("")
   const [email,setemail] = useState("")
   const [password,setpassword] = useState("")
   const signIn = (e) => {
@@ -27,8 +26,14 @@ const App = () => {
               } else {
                 if (transaction.data){
                   setuserinfo(result.data);
-                  setamount(transaction.data);
-                  navigate("/dashboard")
+                  if (userinfo.image  !== ""){
+                    localStorage.email = transaction.data.email
+                    navigate("/dashboard")
+                  } else {
+                    localStorage.email = transaction.data.email
+                    navigate("/dashboard/completevr")
+                  }
+                  
                 }
               }
             })
@@ -43,7 +48,7 @@ const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/dashboard/*" element={<Dashboard userinfo={userinfo} setuserinfo ={setuserinfo} amount = {amount}/>}/>
+        <Route path="/dashboard/*" element={<Dashboard/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/" element={<Navigate to="/signup"/>}/>
         <Route path="/signin" element={<Signin signIn = {signIn} setemail = {setemail} setpassword = {setpassword}/>}/>

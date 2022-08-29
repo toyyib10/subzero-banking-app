@@ -1,12 +1,43 @@
 import Input from "../sign/Input"
 import {useState} from "react"
 import Button from "../Button"
+import "../../../node_modules/bootstrap/dist/js/bootstrap"
+import axios from "axios"
+import {useNavigate} from "react-router-dom"
 
-const SendMoney = ({amount}) => {
+const SendMoney = ({amount,result}) => {
+  const navigate = useNavigate()
   const [username, setusername] = useState("")
   const [transferamount, settransferamount] = useState("")
-  const sendMoney = () => {
+  const [pin , setpin] = useState("")
+  const [check , setcheck] = useState(false)
+  const sendMoney = () => { 
+    if (transferamount !== "" && username !== ""){
+      if (amount.balance > transferamount){
+        setcheck(true)
+        document.getElementById("exampleModal").style.display = "block";
+      } else {
+        alert("Insufficient Balance")
+      }
+    } else {
+      alert("Fill the information")
+    }
     
+  }
+  const closeModal = () => {
+    document.getElementById("exampleModal").style.display = "none"
+  }
+  const send = () => {
+    if (check) {
+      let email = result.email
+      const endPoint = "http://localhost:5000/dashboard/sendmoney"
+      axios.post(endPoint, {pin, username, transferamount, email}).then((result) => {
+        navigate("/dashboard")  
+      })
+    }
+  }
+  const style = {
+    display : "none"
   }
   return (
     <>
@@ -24,11 +55,9 @@ const SendMoney = ({amount}) => {
         <div className="mt-4">
           <Input name={"Amount"} setvalue={settransferamount}/>
         </div>
-        <div className="mt-3 col-lg-3 col-md-4 col-10">
-          <div className="alert alert-warning">
-            <h5 className="m-0">
-              <span className="mt-3">Balance</span> : <svg xmlns="http://www.w3.org/2000/svg" width="1.3em" height="1.3em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 18V7.052a1.05 1.05 0 0 1 1.968-.51l6.064 10.916a1.05 1.05 0 0 0 1.968-.51V6M5 10h14M5 14h14"/></svg> {amount.balance}
-            </h5>
+        <div className="mt-3 col-lg-3 col-md-4 col-10 fs-5">
+          <div className="alert alert-warning d-flex align-items-center">
+            <span>Balance</span> : <svg xmlns="http://www.w3.org/2000/svg" width="1.4em" height="1.4em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 18V7.052a1.05 1.05 0 0 1 1.968-.51l6.064 10.916a1.05 1.05 0 0 0 1.968-.51V6M5 10h14M5 14h14"/></svg> <span>{amount.balance}</span>
           </div> 
         </div>
         <div className="mt-5 pt-2">
@@ -36,7 +65,25 @@ const SendMoney = ({amount}) => {
         </div>
       </div>
      </div>
-    </>
+     <div class="modal" id="exampleModal" tabindex="-1" style={style}>
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Pin</h5>
+            <button type="button" className="btn btn-light" data-dismiss="modal" aria-label="Close" onClick={closeModal}>
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <Input name={"Pin"} setvalue={setpin}/>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <Button sign ={send} todo={"Send"}/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </>
   )
 }
 

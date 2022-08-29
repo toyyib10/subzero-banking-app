@@ -6,7 +6,7 @@ const Button = ({todo , sign}) => {
     <>
       <div className="mt-2">
         <center>
-          <button className="btn btn-lg text-white fw-2" style={style} type="button" onClick={(e) => sign(e)}>{todo}</button>
+          <button className="btn btn-lg text-white btn-light fw-2" style={style} type="button" onClick={(e) => sign(e)}>{todo}</button>
         </center>
       </div> 
     </>

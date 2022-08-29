@@ -8,20 +8,23 @@ const postCompleteVr = (req,res) => {
   let dataImage = req.body.image;
   cloudinary.v2.uploader.upload(dataImage, (err, result) => {
     console.log(result)
-    console.log(err)
-  }).then((result) => {
-    let image = result.secure_url;
-    let pin = req.body.confirmpin;
-    let id =  req.body.id;
-    userModel.findOneAndUpdate({_id : id}, {image,pin}, (err,result) => {
-      if (err) {
-        res.send(err)
-        console.log(err + "d")
-      } else {
-        console.log(result + "t")
-        res.send(result)
-      }
-    })
+    if (err) {
+      console.log(err + "hh")
+    } else {
+      let image = result.secure_url;
+      let pin = req.body.confirmpin;
+      let eMail =  req.body.email;
+      console.log(eMail + "id")
+      userModel.findOneAndUpdate({email : eMail}, {image,pin}, (err,result) => {
+        if (err) {
+          res.send(err)
+          console.log(err + "d")
+        } else {
+          console.log(result + "t")
+          res.send(result)
+        }
+      })
+    }
   })
 }
 const getCompleteVr = (req, res) => {
@@ -51,7 +54,7 @@ const postTransactionAmount = (req, res) => {
   let eMail = req.body.email;
   amountModel.findOne({email : eMail}, (err, result) => {
     if (err) {
-      console.log("unable amout")
+      console.log("unable amount")
     } else {
       res.send(result)
     }

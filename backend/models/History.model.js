@@ -6,7 +6,12 @@ const historySchema = mongoose.Schema({
   color : String,
   amount : String,
   type : String,
+  balance : String,
   phonenumber : String,
   nameofsender : String,
   title : String
-})
+}) 
+
+let historyModel = mongoose.model("history_tbs", historySchema)
+
+module.exports = historyModel;

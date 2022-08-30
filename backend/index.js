@@ -17,7 +17,7 @@ app.post ("/signup" ,postSignup)
 app.get("/signin", getSignin)
 app.post("/signin", postSignin)
 
-app.use(express.static("/build"))
+app.use(express.static("build"))
 app.get("/*", (req,res) => {
   res.sendFile(`${__dirname}"/build/index.html"`)
 })

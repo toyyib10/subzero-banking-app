@@ -15,6 +15,7 @@ router.post("/", (req,res) => {
 
     } else {
       let oldBalance = result.balance;
+      let oldSpent = result.spent
       let balance = Number(oldBalance) - Number(transferAmount)
       if (balance > 0) {
         balance = String(balance)
@@ -28,12 +29,14 @@ router.post("/", (req,res) => {
   
               } else {
                 let sendoldBalance = Number(result.balance) + Number(transferAmount);
+                let spent = Number(transferAmount) + Number(oldSpent)
                 sendoldBalance = String(sendoldBalance)
+                spent = String(spent)
                 amountModel.findOneAndUpdate({email : eMail} , {balance : sendoldBalance}, (err, result) => {
                   if (err) {
   
                   } else {
-                    amountModel.findOneAndUpdate({email : e_mail}, {balance}, (err , result) => {
+                    amountModel.findOneAndUpdate({email : e_mail}, {balance, spent}, (err , result) => {
                       if (err) {
   
                       } else {

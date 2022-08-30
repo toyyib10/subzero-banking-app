@@ -52,9 +52,9 @@ const Main = ({result, amount}) => {
           <div className=" h-100 col-md-8 col-12 mb-md-0 mb-3">
             {/* MONEY */}
             <div className="bg-light w-100 d-md-flex justify-content-between align-items-center pe-md-3 pe-0 d-none " style={other}>
-              <Money component={color} col = {"rgb(172, 255, 47)"} colBg = {colBg} col2={"white"} col3={design} text={"Total balance"} amount={balance}/>
-              <Money component={color2} col = {"black"} colBg = {col} col2 = {"black"} col3={design2} text={"Total spending"} amount={spent}/>
-              <Money component={color2} col = {"black"} colBg = {col} col2 = {"black"} col3={design2} text={"Total saved"} amount={saved}/>
+              <Money component={color} col = {"rgb(172, 255, 47)"} colBg = {colBg} col2={"white"} col3={design} text={"Account Balance"} amount={balance}/>
+              <Money component={color2} col = {"black"} colBg = {col} col2 = {"black"} col3={design2} text={"Total Spent"} amount={spent}/>
+              <Money component={color2} col = {"black"} colBg = {col} col2 = {"black"} col3={design2} text={"Total Saved"} amount={saved}/>
             </div>
             {/* PHONE */}
             <div className="w-100 h-50 d-md-none pb-2 pt-1 pe-0 d-flex justify-content-center shadow bg-dark rounded-1" style={other}>
@@ -66,7 +66,7 @@ const Main = ({result, amount}) => {
             </div>
           </div>
           <div className="col-md-4 col-12 mt-md-0" style={merge}>
-            <TransactionReview/>
+            <TransactionReview balance = {balance} spent ={spent} saved ={saved}/>
           </div>
       </div>
       <div className="w-100 mt-3 px-4" style={height}>

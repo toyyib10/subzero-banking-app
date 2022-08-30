@@ -1,16 +1,48 @@
 import Input from "../sign/Input"
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import Button from "../Button"
 import "../../../node_modules/bootstrap/dist/js/bootstrap"
 import axios from "axios"
 import {useNavigate} from "react-router-dom"
 
-const SendMoney = ({amount,result}) => {
+const SendMoney = () => {
   const navigate = useNavigate()
   const [username, setusername] = useState("")
   const [transferamount, settransferamount] = useState("")
   const [pin , setpin] = useState("")
   const [check , setcheck] = useState(false)
+  const [email, setemail] = useState("")
+  const [userinfo, setuserinfo] = useState("")
+  const [amount, setamount] = useState("")
+
+  useEffect(() => {
+    setemail(localStorage.email)
+  }, [])
+  
+  const endPoint =  "http://localhost:5000/dashboard/getAll"
+  const transactionPoint = "http://localhost:5000/dashboard/transaction"
+  axios.post(endPoint, {email}).then((result) => {
+    if (result === "") {
+
+    } else {
+      if (result.data){
+        setuserinfo(result.data)
+      } else {
+      
+    }
+    
+    }
+  })
+  axios.post(transactionPoint, {email}).then((transaction) => {
+    if (transaction === "") {
+
+    } else {
+      if (transaction.data){
+        setamount(transaction.data)
+      }
+    }
+  })
+
   const sendMoney = () => { 
     if (transferamount !== "" && username !== ""){
       if (amount.balance > transferamount){
@@ -28,17 +60,20 @@ const SendMoney = ({amount,result}) => {
     document.getElementById("exampleModal").style.display = "none"
   }
   const send = () => {
+    console.log("gijii")
     if (check) {
-      let email = result.email
+      let email = userinfo.email
       const endPoint = "http://localhost:5000/dashboard/sendmoney"
       axios.post(endPoint, {pin, username, transferamount, email}).then((result) => {
         navigate("/dashboard")  
+        console.log(result)
       })
     }
   }
   const style = {
     display : "none"
   }
+  
   return (
     <>
      <div className="w-100 px-lg-4 pb-lg-4 px-2 pt-3 h-100  ">

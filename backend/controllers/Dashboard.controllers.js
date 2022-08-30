@@ -61,4 +61,18 @@ const postTransactionAmount = (req, res) => {
   })
 }
 
-module.exports = {postCompleteVr,getCompleteVr, getDashboard, postDashboard, getTransactionAmount, postTransactionAmount};
+const getUserAndAmount = (req, res) => {
+  res.send({})
+}
+const postUserAndAmount = (req, res) => {
+  let eMail = req.body.email
+  userModel.findOne({email : eMail} , (err, result) => {
+    if(err){
+    } else {
+      res.send(result)
+      // console.log(result)
+    }
+  })
+}
+ 
+module.exports = {postCompleteVr,getCompleteVr, getDashboard, postDashboard, getTransactionAmount, postTransactionAmount, postUserAndAmount, getUserAndAmount};

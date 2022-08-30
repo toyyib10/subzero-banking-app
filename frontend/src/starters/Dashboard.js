@@ -17,41 +17,54 @@ const Dashboard = () => {
   const [email, setemail] = useState("")
   const [userinfo, setuserinfo] = useState("")
   const [amount, setamount] = useState("")
+  const [history, sethistory] = useState("")
+  const loadData = () => {
+    const endPoint =  "/dashboard/getAll"
+    const transactionPoint = "/dashboard/transaction"
+    const historyPoint = "/dashboard/history"
+    axios.post(endPoint, {email}).then((result) => {
+      if (result === "") {
 
+      } else {
+        if (result.data){
+          setuserinfo(result.data)
+        } else {
+        
+      }
+      
+      }
+    })
+    axios.post(transactionPoint, {email}).then((transaction) => {
+      if (transaction === "") {
+
+      } else {
+        if (transaction.data){
+          setamount(transaction.data)
+        }
+      }
+    })
+    axios.post(historyPoint, {email}).then((history) => {
+      if (history === "") {
+
+      } else {
+        if (history.data){
+          sethistory(history.data)
+        }
+      }
+    })
+  }
   useEffect(() => {
-    setemail(localStorage.email)
+    setemail(localStorage.email);
+    loadData()
   }, [])
   
-  const endPoint =  "http://localhost:5000/dashboard/getAll"
-  const transactionPoint = "http://localhost:5000/dashboard/transaction"
-  axios.post(endPoint, {email}).then((result) => {
-    if (result === "") {
-
-    } else {
-      if (result.data){
-        setuserinfo(result.data)
-      } else {
-      
-    }
-    
-    }
-  })
-  axios.post(transactionPoint, {email}).then((transaction) => {
-    if (transaction === "") {
-
-    } else {
-      if (transaction.data){
-        setamount(transaction.data)
-      }
-    }
-  })
-
+ 
   const submit = () => {
     if (image === "" || newpin === "" || confirmpin === ""){
     } else {
       if (newpin !== confirmpin){
       } else {
-        const endPoint = "http://localhost:5000/dashboard/upload";
+        const endPoint = "/dashboard/upload";
         let userDetails = {image, confirmpin, email};
         axios.post(endPoint,userDetails).then((response)=>{
           setuserinfo(response.data)
@@ -72,7 +85,7 @@ const Dashboard = () => {
         <SideBar/>     
         <main className="col-md-9 ms-sm-auto col-lg-10 px-md-1">  
           <Routes>
-            <Route path="/" element={<Main result={userinfo} amount= {amount}/>}/>
+            <Route path="/" element={<Main result={userinfo} amount= {amount} history={history}/>}/>
             <Route path="/completevr" element={<Completevr userinfo={userinfo} submit={submit} setimage={setimage} setnewpin={setnewpin} setconfirmpin={setconfirmpin}/>}/>
             <Route />
             <Route path="/addmoney" element={<AddMoney result={userinfo}/>}/>

@@ -19,8 +19,8 @@ const SendMoney = () => {
     setemail(localStorage.email)
   }, [])
   
-  const endPoint =  "http://localhost:5000/dashboard/getAll"
-  const transactionPoint = "http://localhost:5000/dashboard/transaction"
+  const endPoint =  "/dashboard/getAll"
+  const transactionPoint = "/dashboard/transaction"
   axios.post(endPoint, {email}).then((result) => {
     if (result === "") {
 
@@ -63,7 +63,7 @@ const SendMoney = () => {
     console.log("gijii")
     if (check) {
       let email = userinfo.email
-      const endPoint = "http://localhost:5000/dashboard/sendmoney"
+      const endPoint = "/dashboard/sendmoney"
       axios.post(endPoint, {pin, username, transferamount, email}).then((result) => {
         navigate("/dashboard")  
         console.log(result)

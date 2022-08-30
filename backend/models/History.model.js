@@ -7,8 +7,7 @@ const historySchema = mongoose.Schema({
   amount : String,
   type : String,
   balance : String,
-  phonenumber : String,
-  nameofsender : String,
+  name : String,
   title : String
 }) 
 

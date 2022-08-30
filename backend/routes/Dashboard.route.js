@@ -3,7 +3,7 @@ const router = express.Router()
 const UploadFiles = require("./Upload.route")
 const Sendmoney = require("./Sendmoney.route")
 const history = require("./History.route")
-const wallet = require("./Wallet.route.route")
+const wallet = require("./Wallet.route")
 const {getDashboard, postDashboard, getTransactionAmount, postTransactionAmount, getUserAndAmount, postUserAndAmount} = require("../controllers/Dashboard.controllers")
 
 router.use("/upload", UploadFiles)

@@ -70,7 +70,6 @@ const postUserAndAmount = (req, res) => {
     if(err){
     } else {
       res.send(result)
-      // console.log(result)
     }
   })
 }

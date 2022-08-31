@@ -1,10 +1,12 @@
-import React from 'react'
+import {useState, useEffect} from 'react'
 import Money from "./Money";
 import Phone from "./Phone";
 import QuickActions from "./QuickActions";
 import TransactionReview from "./TransactionReview";
+import axios from "axios"
 
-const Main = ({result, amount}) => {
+const Main = () => {
+
   const style = {
     height: "63%"
   }
@@ -43,6 +45,41 @@ const Main = ({result, amount}) => {
   const quick = {
     height : "60%"
   }
+  const [email, setemail] = useState("")
+  const [amount, setamount] = useState("")
+  const [history, sethistory] = useState("")
+
+  const loadAmount = () => {
+    const transactionPoint = "http://localhost:5000/dashboard/transaction"
+    axios.post(transactionPoint, {email}).then((transaction) => {
+      if (transaction === "") {
+
+      } else {
+        if (transaction.data){
+          setamount(transaction.data)
+        }
+      }
+    })
+  }
+  const loadHistory = () => {
+    const historyPoint = "http://localhost:5000/dashboard/history"
+    axios.post(historyPoint, {email , status: true}).then((result) => {
+      if (result === "") {
+
+      } else {
+        if (result.data){
+          sethistory(result.data)
+        }
+      }
+    })
+  }
+
+  useEffect(() => {
+    setemail(localStorage.email);           
+    loadAmount() 
+    loadHistory() 
+  }, [email])
+
   let balance = amount.balance;
   let spent = amount.spent;
   let saved = amount.saved;
@@ -66,7 +103,7 @@ const Main = ({result, amount}) => {
             </div>
           </div>
           <div className="col-md-4 col-12 mt-md-0" style={merge}>
-            <TransactionReview balance = {balance} spent ={spent} saved ={saved}/>
+            <TransactionReview history={history}/>
           </div>
       </div>
       <div className="w-100 mt-3 px-4" style={height}>

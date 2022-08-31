@@ -19,10 +19,10 @@ const Dashboard = () => {
   const [amount, setamount] = useState("")
   const [history, sethistory] = useState("")
   const loadData = () => {
-    const endPoint =  "/dashboard/getAll"
-    const transactionPoint = "/dashboard/transaction"
-    const historyPoint = "/dashboard/history"
-    axios.post(endPoint, {email}).then((result) => {
+    const getPoint =  "http://localhost:5000/dashboard/getAll"
+    
+    
+    axios.post(getPoint, {email}).then((result) => {
       if (result === "") {
 
       } else {
@@ -34,6 +34,11 @@ const Dashboard = () => {
       
       }
     })
+
+    
+  }
+  const loadAmount = () => {
+    const transactionPoint = "http://localhost:5000/dashboard/transaction"
     axios.post(transactionPoint, {email}).then((transaction) => {
       if (transaction === "") {
 
@@ -43,33 +48,40 @@ const Dashboard = () => {
         }
       }
     })
-    axios.post(historyPoint, {email}).then((history) => {
-      if (history === "") {
+  }
+  const loadHistory = () => {
+    const historyPoint = "http://localhost:5000/dashboard/history"
+    axios.post(historyPoint, {email}).then((result) => {
+      if (result === "") {
 
       } else {
-        if (history.data){
-          sethistory(history.data)
+        if (result.data){
+          sethistory(result.data)
         }
       }
     })
   }
+
   useEffect(() => {
-    setemail(localStorage.email);
-    loadData()
-  }, [])
-  
- 
+    setemail(localStorage.email);           
+    loadData()   
+    loadAmount() 
+    loadHistory() 
+  }, [email])
+
   const submit = () => {
     if (image === "" || newpin === "" || confirmpin === ""){
     } else {
       if (newpin !== confirmpin){
       } else {
-        const endPoint = "/dashboard/upload";
+        const endPoint = "http://localhost:5000/dashboard/upload";
         let userDetails = {image, confirmpin, email};
         axios.post(endPoint,userDetails).then((response)=>{
           setuserinfo(response.data)
           if (response.data) {
             navigate("/dashboard")
+          } else {
+            console.log("he no work")
           }
         })
       }
@@ -85,7 +97,7 @@ const Dashboard = () => {
         <SideBar/>     
         <main className="col-md-9 ms-sm-auto col-lg-10 px-md-1">  
           <Routes>
-            <Route path="/" element={<Main result={userinfo} amount= {amount} history={history}/>}/>
+            <Route path="/" element={<Main/>}/>
             <Route path="/completevr" element={<Completevr userinfo={userinfo} submit={submit} setimage={setimage} setnewpin={setnewpin} setconfirmpin={setconfirmpin}/>}/>
             <Route />
             <Route path="/addmoney" element={<AddMoney result={userinfo}/>}/>

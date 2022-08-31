@@ -3,7 +3,7 @@ const router = express.Router()
 const historyModel = require("../models/History.model")
 const {getHistory, postHistory} = require("../controllers/History.controllers")
 
-router.get("/history",getHistory)
-router.post("/history",postHistory)
+router.get("/",getHistory)
+router.post("/",postHistory)
 
 module.exports = router;

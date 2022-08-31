@@ -15,37 +15,50 @@ const SendMoney = () => {
   const [userinfo, setuserinfo] = useState("")
   const [amount, setamount] = useState("")
 
+  
+  const loadData = () => {
+    const endPoint =  "http://localhost:5000/dashboard/getAll"
+    axios.post(endPoint, {email}).then((result) => {
+      if (result === "") {
+  
+      } else {
+        if (result.data){
+          setuserinfo(result.data)
+        } else {
+        
+      }
+      
+      }
+    })
+  }
+
+  const loadAmount = () => {
+    const transactionPoint = "http://localhost:5000/dashboard/transaction"
+ 
+    axios.post(transactionPoint, {email}).then((transaction) => {
+      if (transaction === "") {
+  
+      } else {
+        if (transaction.data){
+          setamount(transaction.data)
+        }
+      }
+    })
+  }
+
   useEffect(() => {
     setemail(localStorage.email)
-  }, [])
+    loadData()
+    loadAmount()
+  }, [email])
   
-  const endPoint =  "/dashboard/getAll"
-  const transactionPoint = "/dashboard/transaction"
-  axios.post(endPoint, {email}).then((result) => {
-    if (result === "") {
 
-    } else {
-      if (result.data){
-        setuserinfo(result.data)
-      } else {
-      
-    }
-    
-    }
-  })
-  axios.post(transactionPoint, {email}).then((transaction) => {
-    if (transaction === "") {
 
-    } else {
-      if (transaction.data){
-        setamount(transaction.data)
-      }
-    }
-  })
+ 
 
   const sendMoney = () => { 
     if (transferamount !== "" && username !== ""){
-      if (amount.balance > transferamount){
+      if (Number(amount.balance) > Number(transferamount)){
         setcheck(true)
         document.getElementById("exampleModal").style.display = "block";
       } else {
@@ -60,13 +73,17 @@ const SendMoney = () => {
     document.getElementById("exampleModal").style.display = "none"
   }
   const send = () => {
-    console.log("gijii")
     if (check) {
       let email = userinfo.email
-      const endPoint = "/dashboard/sendmoney"
+      const endPoint = "http://localhost:5000/dashboard/sendmoney"
       axios.post(endPoint, {pin, username, transferamount, email}).then((result) => {
-        navigate("/dashboard")  
-        console.log(result)
+         if (result.data){
+          navigate("/dashboard")  
+         } else {
+           console.log("he no work")
+         }
+        
+        console.log('he no work')
       })
     }
   }

@@ -13,8 +13,8 @@ const App = () => {
   const [password,setpassword] = useState("")
   const signIn = (e) => {
     e.preventDefault()
-    const endPoint = "/signin"
-    const transactionPoint = "/dashboard/transaction"
+    const endPoint = "http://localhost:5000/signin"
+    const transactionPoint = "http://localhost:5000/dashboard/transaction"
     axios.post(endPoint, {email,password}).then((result) => {
         if (result === "") {
 

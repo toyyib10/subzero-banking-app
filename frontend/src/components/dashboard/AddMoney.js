@@ -17,7 +17,7 @@ const AddMoney = ({result}) => {
           </div>
           <div className="d-flex justify-content-between align-items-center border-bottom mt-4">
             <h3>Account Username</h3>
-            <h3>{result.username}</h3>
+            <h3>@ {result.username}</h3>
           </div>
           <div className="d-flex justify-content-between align-items-center border-bottom mt-4">
             <h3>Account Name</h3>

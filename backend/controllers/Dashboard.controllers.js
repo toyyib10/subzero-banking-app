@@ -54,7 +54,7 @@ const postTransactionAmount = (req, res) => {
   let eMail = req.body.email;
   amountModel.findOne({email : eMail}, (err, result) => {
     if (err) {
-      console.log("unable amount")
+      // console.log("unable amount")
     } else {
       res.send(result)
     }

@@ -69,7 +69,7 @@ const postMoney = (req,res) => {
                                   date : currentDate,
                                   color : "red",
                                   amount : transferAmount,
-                                  type : "Debit",
+                                  type : "",
                                   balance : String(balance1),
                                   name : userName,
                                   title : "Money Sent"

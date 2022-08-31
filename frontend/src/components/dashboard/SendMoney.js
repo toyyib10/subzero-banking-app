@@ -50,11 +50,7 @@ const SendMoney = () => {
     setemail(localStorage.email)
     loadData()
     loadAmount()
-  }, [email])
-  
-
-
- 
+  }, [email]) 
 
   const sendMoney = () => { 
     if (transferamount !== "" && username !== ""){

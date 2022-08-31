@@ -2,6 +2,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.css'
 import Dashboard from './starters/Dashboard';
 import Signin from './starters/Signin';
 import Signup from './starters/Signup';
+import NotFound from './starters/NotFound';
 import {Routes ,Route ,Navigate, useNavigate} from 'react-router-dom';
 import axios from "axios"
 import {useState} from "react"
@@ -52,6 +53,7 @@ const App = () => {
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/" element={<Navigate to="/signup"/>}/>
         <Route path="/signin" element={<Signin signIn = {signIn} setemail = {setemail} setpassword = {setpassword}/>}/>
+        <Route path="/*" element={<NotFound/>}/>
       </Routes>
     </>
   )

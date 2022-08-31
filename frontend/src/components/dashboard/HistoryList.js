@@ -17,7 +17,7 @@ const HistoryList = ({title,name,amount,textColor,type}) => {
           {amount}
         </h6>
         <p className="p-0 m-0" align="right" style={color}>{type}</p>
-        </div>
+      </div>
     </li>
     </>
   )

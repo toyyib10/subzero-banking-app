@@ -47,7 +47,7 @@ const Main = () => {
   }
   const [email, setemail] = useState("")
   const [amount, setamount] = useState("")
-  const [history, sethistory] = useState("")
+  const [history, sethistory] = useState([])
 
   const loadAmount = () => {
     const transactionPoint = "http://localhost:5000/dashboard/transaction"

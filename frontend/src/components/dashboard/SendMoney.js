@@ -47,7 +47,7 @@ const SendMoney = () => {
   }
 
   useEffect(() => {
-    setemail(localStorage.email)
+    setemail(sessionStorage.email)
     loadData()
     loadAmount()
   }, [email]) 

@@ -28,10 +28,10 @@ const App = () => {
                 if (transaction.data){
                   setuserinfo(result.data);
                   if (userinfo.image  !== ""){
-                    localStorage.email = transaction.data.email
+                    sessionStorage.email = transaction.data.email
                     navigate("/dashboard")
                   } else {
-                    localStorage.email = transaction.data.email
+                    sessionStorage.email = transaction.data.email
                     navigate("/dashboard/completevr")
                   }
                   

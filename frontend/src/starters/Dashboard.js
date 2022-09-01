@@ -23,16 +23,16 @@ const Dashboard = () => {
   const [history, sethistory] = useState([])
   
   useEffect(() => {
-    setemail(localStorage.email);   
+    setemail(sessionStorage.email);   
     const loadHistory = async () => {
-      const historyPoint = "http://localhost:5000/dashboard/history"
+      const historyPoint = "/dashboard/history"
       await axios.post(historyPoint, {email, status:true}).then((result) => {
         sethistory(result.data)
         console.log(history)
       })
     }   
     const loadData = () => {
-      const getPoint =  "http://localhost:5000/dashboard/getAll"
+      const getPoint =  "/dashboard/getAll"
       
       
       axios.post(getPoint, {email}).then((result) => {
@@ -51,7 +51,7 @@ const Dashboard = () => {
       
     }
     const loadAmount = () => {
-      const transactionPoint = "http://localhost:5000/dashboard/transaction"
+      const transactionPoint = "/dashboard/transaction"
       axios.post(transactionPoint, {email}).then((transaction) => {
         if (transaction === "") {
   
@@ -72,7 +72,7 @@ const Dashboard = () => {
     } else {
       if (newpin !== confirmpin){
       } else {
-        const endPoint = "http://localhost:5000/dashboard/upload";
+        const endPoint = "/dashboard/upload";
         let userDetails = {image, confirmpin, email};
         axios.post(endPoint,userDetails).then((response)=>{
           setuserinfo(response.data)
@@ -102,7 +102,7 @@ const Dashboard = () => {
               <Route path="/sendmoney" element = {<SendMoney/>}/>
               <Route path="/quickactions" element={<DashboardAction/>}/>
               <Route path="/wallets"/>
-              <Route path="/history" element={<HistoryReport/>}/>
+              <Route path="/history" element={<HistoryReport userinfo={userinfo}/>}/>
               <Route path="/profile"/>
               <Route path="/notification"/>
               <Route path="/*" element={<NotFound/>}/>

@@ -1,16 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.5678e6de.css",
-    "main.js": "/static/js/main.96c76e98.js",
+    "main.css": "/static/css/main.8f79e8d1.css",
+    "main.js": "/static/js/main.2a270ef5.js",
     "static/js/787.c1112931.chunk.js": "/static/js/787.c1112931.chunk.js",
-    "static/media/banking.jpg": "/static/media/banking.05aafdfbb54ad419ad70.jpg",
     "index.html": "/index.html",
-    "main.5678e6de.css.map": "/static/css/main.5678e6de.css.map",
-    "main.96c76e98.js.map": "/static/js/main.96c76e98.js.map",
+    "main.8f79e8d1.css.map": "/static/css/main.8f79e8d1.css.map",
+    "main.2a270ef5.js.map": "/static/js/main.2a270ef5.js.map",
     "787.c1112931.chunk.js.map": "/static/js/787.c1112931.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5678e6de.css",
-    "static/js/main.96c76e98.js"
+    "static/css/main.8f79e8d1.css",
+    "static/js/main.2a270ef5.js"
   ]
 }

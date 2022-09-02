@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react'
 import axios from "axios"
+// import UserChart from './Chart';
 
 const HistoryReport = ({userinfo}) => {
   const style = {
@@ -32,9 +33,9 @@ const HistoryReport = ({userinfo}) => {
   return (
     <>
       <div className="w-100 p-3 h-100">
-        <div className="bg-white shadow p-md-3 d-flex flex-wrap" style={style}>
-          <div className="col-lg-6 col-md-6 col-12 bg-danger p-3">
-            odoodddddddddd
+        <div className="bg-white shadow p-md-3 rounded-1 d-flex flex-wrap" style={style}>
+          <div className="col-lg-6 col-md-6 col-12 p-3">
+            {/* <UserChart/> */}
           </div>
           <div className="col-lg-6 col-md-6 col-12 h-100 px-3" style={over}>
             <ul type="none" className="w-100 p-0 h-50 ">

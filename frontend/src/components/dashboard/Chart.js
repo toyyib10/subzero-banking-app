@@ -1,44 +1,59 @@
-import {useState} from 'react'
-import {Doughnut} from "react-chartjs-2"
+import Chart from "Chart.js"
+const UserChart = () => {
 
-const UserChart = ({balance}) => {
-  // const [balance, setchartdata] = useState(amount.balance)
-  const [chartdata, setchartdata] = useState("")
+  (function () {
+    'use strict'
   
-  const set = ({
-    labels: ["Total Balance", "Total Spent", "Total Saved"],
-    datasets: [
-      {
-        label: "Price in USD",
-        data: [10, 20, 30],
-        backgroundColor: [
-          "#ffbb11",
-          "#ecf0f1",
-          "#50AF95",
-          "#f3ba2f",
-          "#2a71d0"
-        ]
+    // Graphs
+    var ctx = document.getElementById('myChart')
+    // eslint-disable-next-line no-unused-vars
+    var myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [
+          'Sunday',
+          'Monday',
+          'Tuesday',
+          'Wednesday',
+          'Thursday',
+          'Friday',
+          'Saturday'
+        ],
+        datasets: [{
+          data: [
+            15339,
+            21345,
+            18483,
+            24003,
+            23489,
+            24092,
+            12034
+          ],
+          lineTension: 0,
+          backgroundColor: 'transparent',
+          borderColor: '#007bff',
+          borderWidth: 4,
+          pointBackgroundColor: '#007bff'
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: false
+            }
+          }]
+        },
+        legend: {
+          display: false
+        }
       }
-    ]
-  });
-  console.log(balance)
+    })
+  })()
+
   return (
     <div>
-      <Doughnut
-        data={set}
-        options={{
-          plugins: {
-            title: {
-              display: true,
-              text: "User Amounts"
-            },
-            legend: {
-              display: true,
-              position: "bottom"
-          }
-          }
-        }}
-      />
+      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
     </div>
   )
 }

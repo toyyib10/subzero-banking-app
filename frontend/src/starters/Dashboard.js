@@ -10,6 +10,7 @@ import DashboardAction from "../components/dashboard/DashboardAction";
 import {useState, useEffect} from "react"
 import axios from "axios";
 import NotFound from "../starters/NotFound"
+import Wallets from "../components/dashboard/Wallets";
 
 
 const Dashboard = () => {
@@ -93,7 +94,7 @@ const Dashboard = () => {
       <div className="container-fluid">
         <div className="row">  
           <SideBar/>     
-          <main className="col-md-9 ms-sm-auto col-lg-10 px-md-1">  
+          <main className="col-md-9 p-0 px-1 ms-sm-auto col-lg-10 px-md-1">  
             <Routes>
               <Route path="/" element={<Main/>}/>
               <Route path="/completevr" element={<Completevr userinfo={userinfo} submit={submit} setimage={setimage} setnewpin={setnewpin} setconfirmpin={setconfirmpin}/>}/>
@@ -101,7 +102,7 @@ const Dashboard = () => {
               <Route path="/addmoney" element={<AddMoney result={userinfo}/>}/>
               <Route path="/sendmoney" element = {<SendMoney/>}/>
               <Route path="/quickactions" element={<DashboardAction/>}/>
-              <Route path="/wallets"/>
+              <Route path="/wallets" element={<Wallets/>}/>
               <Route path="/history" element={<HistoryReport userinfo={userinfo}/>}/>
               <Route path="/profile"/>
               <Route path="/notification"/>

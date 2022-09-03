@@ -4,6 +4,7 @@ import Phone from "./Phone";
 import QuickActions from "./QuickActions";
 import TransactionReview from "./TransactionReview";
 import axios from "axios"
+import {Link} from "react-router-dom"
 
 const Main = () => {
 
@@ -50,7 +51,7 @@ const Main = () => {
   const [history, sethistory] = useState([])
 
   const loadAmount = () => {
-    const transactionPoint = "/dashboard/transaction"
+    const transactionPoint = "http://localhost:5000/dashboard/transaction"
     axios.post(transactionPoint, {email}).then((transaction) => {
       if (transaction === "") {
 
@@ -62,7 +63,7 @@ const Main = () => {
     })
   }
   const loadHistory = () => {
-    const historyPoint = "/dashboard/history"
+    const historyPoint = "http://localhost:5000/dashboard/history"
     axios.post(historyPoint, {email , status: true}).then((result) => {
       if (result === "") {
 
@@ -72,6 +73,10 @@ const Main = () => {
         }
       }
     })
+  }
+
+  const sec = {
+    height : "35em"
   }
 
   useEffect(() => {
@@ -84,7 +89,7 @@ const Main = () => {
   let spent = amount.spent;
   let saved = amount.saved;
   return (
-    <>
+    <section style={sec}>
       <div className="w-100 d-flex flex-wrap px-md-4 px-2 pt-3" style={style}>
           <div className=" h-100 col-md-8 col-12 mb-md-0 mb-3">
             {/* MONEY */}
@@ -107,14 +112,46 @@ const Main = () => {
           </div>
       </div>
       <div className="w-100 mt-3 px-4" style={height}>
-        <div className="bg-white shadow w-100 h-100 rounded-1">
-          <div className="d-flex w-100 justify-content-between px-4 pt-2">
+        <div className="bg-white shadow w-100 pb-2 rounded-1">
+          <div className="d-flex w-100 justify-content-between px-4 pt-1">
             <p className="fs-4">Recent Wallet</p>
-            <a href="/" className="mt-1" style={style2}>View all</a>
+            <Link to="/dashboard/wallets" className="mt-1" style={style2}>View all</Link>
+          </div>
+          <div>
+            <ul type="none" className="d-flex justify-content-between flex-wrap">
+              <li className="d-flex align-items-center col-6 pe-3 pe-sm-0">
+                <div className="bg-dark col-11 rounded-4">
+                  <div className="d-flex justify-content-between mx-2">
+                    <h3 className="text-white">Name</h3>
+                    <button className="btn  text-white">
+                      DELETE
+                    </button>
+                  </div>
+                  <div className="d-flex justify-content-between mx-2">
+                    <h3 className="text-white m-0">#1000000</h3>
+                    <h4 className="text-white m-0">12/03/2023</h4>
+                  </div>
+                </div>
+              </li>
+              <li className="d-flex align-items-center col-6 pe-3 pe-sm-0">
+                <div className="bg-dark col-11 rounded-4">
+                  <div className="d-flex justify-content-between mx-2">
+                    <h3 className="text-white">Name</h3>
+                    <button className="btn  text-white">
+                      DELETE
+                    </button>
+                  </div>
+                  <div className="d-flex justify-content-between mx-2">
+                    <h3 className="text-white m-0">#1000000</h3>
+                    <h4 className="text-white m-0">12/03/2023</h4>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-    </>
+    </section> 
   )
 }
 

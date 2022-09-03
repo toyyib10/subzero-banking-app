@@ -7,14 +7,14 @@ const SideBar = () => {
   }
   return (
     <>
-      <nav id="sidebarMenu" className="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse p-4">
+      <nav id="sidebarMenu" className="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse ps-lg-4 pe-0 ps-md-3">
         <div className="position-sticky pt-3">
           <p className="d-flex align-items-center mb-3 me-md-auto text-white d-md-none d-block">
             <span className="fs-2">Subzero</span>
           </p>
           <h5 className="text-secondary fs-6">SERVICES</h5>
           <ul className="nav nav-pills flex-column mb-4">
-            <li className="rounded mt-2" style={style}>
+            <li className="rounded mt-2 me-3" style={style}>
               <Link to="/dashboard" className="nav-link text-white">
                 <svg className="me-2 mb-1" xmlns="http://www.w3.org/2000/svg" width="1.4em" height="1.4em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 40 40"><path fill="rgb(172, 255, 47)" d="M15.781 17.868H4.534c-1.02 0-1.85-.831-1.85-1.854V4.768c0-1.02.83-1.85 1.85-1.85h11.247c1.02 0 1.85.83 1.85 1.85v11.247c0 1.022-.83 1.853-1.85 1.853zM4.534 3.804a.964.964 0 0 0-.963.964v11.247c0 .533.432.967.963.967h11.247a.966.966 0 0 0 .963-.967V4.768a.964.964 0 0 0-.963-.964H4.534zm30.935 14.064h-11.25a1.853 1.853 0 0 1-1.849-1.854V4.768c0-1.02.829-1.85 1.849-1.85h11.25a1.85 1.85 0 0 1 1.847 1.85v11.247a1.853 1.853 0 0 1-1.847 1.853zM24.219 3.804a.964.964 0 0 0-.963.964v11.247c0 .533.432.967.963.967h11.25c.52 0 .96-.443.96-.967V4.768a.962.962 0 0 0-.96-.964h-11.25zm-8.438 33.279H4.534c-1.02 0-1.85-.83-1.85-1.85v-11.25c0-1.021.83-1.851 1.85-1.851h11.247c1.02 0 1.85.83 1.85 1.851v11.249c0 1.02-.83 1.851-1.85 1.851zM4.534 23.019a.965.965 0 0 0-.963.964v11.249c0 .532.432.964.963.964h11.247a.964.964 0 0 0 .963-.964V23.983a.964.964 0 0 0-.963-.964H4.534zm30.935 14.064h-11.25c-1.02 0-1.849-.83-1.849-1.85v-11.25c0-1.021.829-1.851 1.849-1.851h11.25c1.018 0 1.847.83 1.847 1.851v11.249a1.852 1.852 0 0 1-1.847 1.851zm-11.25-14.064a.965.965 0 0 0-.963.964v11.249c0 .532.432.964.963.964h11.25c.53 0 .96-.432.96-.964V23.983a.962.962 0 0 0-.96-.964h-11.25z"/></svg>
                 Dashboard
@@ -23,19 +23,19 @@ const SideBar = () => {
             <li className="rounded  mt-1">
               <Link to="/dashboard/addmoney" className="nav-link text-secondary" aria-current="page">
                 <svg className="me-2 mb-1"  xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path fill="rgb(255 ,255 , 255 , 0.4)" d="M16 2A14.172 14.172 0 0 0 2 16a14.172 14.172 0 0 0 14 14a14.172 14.172 0 0 0 14-14A14.172 14.172 0 0 0 16 2Zm8 15h-7v7h-2v-7H8v-2h7V8h2v7h7Z"/><path fill="none" d="M24 17h-7v7h-2v-7H8v-2h7V8h2v7h7v2z"/></svg>
-                Add money
+                Add Money
               </Link>
             </li>
             <li>
               <Link to="/dashboard/sendmoney" className="nav-link text-secondary">
               <svg className="me-2 mb-1" xmlns="http://www.w3.org/2000/svg" width="1.4em" height="1.4em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path fill="currentColor" d="M27.71 4.29a1 1 0 0 0-1.05-.23l-22 8a1 1 0 0 0 0 1.87l8.59 3.43L19.59 11L21 12.41l-6.37 6.37l3.44 8.59A1 1 0 0 0 19 28a1 1 0 0 0 .92-.66l8-22a1 1 0 0 0-.21-1.05Z"/></svg>
-                Send money
+                Send Money
               </Link>
             </li>
             <li>
               <Link to="/dashboard/quickactions" className="nav-link text-secondary">
                 <svg className="me-2 mb-1" xmlns="http://www.w3.org/2000/svg" width="1.4em" height="1.4em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"><path fill="currentColor" d="M371.984 305.035c-13.512 50.421-65.335 80.346-115.76 66.832c-50.413-13.507-80.338-65.337-66.829-115.755c13.512-50.42 65.335-80.341 115.753-66.832c50.425 13.513 80.345 65.333 66.836 115.755zm50.755-62.632c-11.252-37.641-8.781-85.581 1.538-125.371C436.646 69.336 403.557 16.19 355.01 3.183C305.54-10.07 250.636 19.276 237.63 68.714c-9.964 37.88-30.14 75.11-56.251 103.12c-29.642 31.132-67.354 53.261-109.624 64.586c-51.499 13.8-82.087 66.826-68.284 118.34c13.815 51.5 66.762 82.09 118.284 68.272c38.458-9.816 83.883-12.17 120.92-.59c44.85 14.024 75.184 31.778 109.082 64.938c36.67 35.872 97.125 30.817 131.917-3.967c35.313-35.3 38.553-96.17 3.28-132.798c-29.76-30.902-50.321-61.734-64.216-108.212z"/></svg>
-                Quick actions
+                Quick Actions
               </Link>
             </li>
             <li>

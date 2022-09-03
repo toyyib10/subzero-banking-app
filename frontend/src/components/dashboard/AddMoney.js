@@ -7,7 +7,7 @@ const AddMoney = ({result}) => {
   }
   return (
     <>
-      <div className="w-100 px-lg-4 pb-lg-4 px-2 pt-3 h-100  ">
+      <div className="w-100 px-lg-4 pb-lg-4 px-2 pt-3 h-100">
         <div className="w-100 bg-white shadow h-100 p-4 rounded-1 p-4">
           <h1>Bank Transfer</h1>
           <p>Copy your username and send money to your generated account number easily and fast</p>

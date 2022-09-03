@@ -34,8 +34,64 @@ const Wallets = () => {
           </div>
 
           {/* other */}
-          <div className="col-lg-6 col-md-6 col-12 h-100 px-3" style={over}>
+          <div className="col-lg-6 col-md-6 col-12 h-100 ps-3" style={over}>
             <ul type="none" className="w-100 p-0 h-50 ">
+              <li className="d-flex align-items-center justify-content-center mb-3">
+                <div className="bg-dark col-10 col-lg-9 rounded-4">
+                  <div className="d-flex justify-content-between mt-2 mx-3">
+                    <h3 className="text-white">Name</h3>
+                    <button className="btn  text-white">
+                      DELETE
+                    </button>
+                  </div>
+                  <div className="d-flex justify-content-between mb-2 mx-3 mt-4">
+                    <h2 className="text-white m-0"># 1000000</h2>
+                    <h3 className="text-white m-0">12/03/2023</h3>
+                  </div>
+                </div>
+              </li>
+              <li className="d-flex align-items-center justify-content-center mb-3">
+                <div className="bg-dark col-10 col-lg-9 rounded-4">
+                  <div className="d-flex justify-content-between mt-2 mx-3">
+                    <h3 className="text-white">Name</h3>
+                    <button className="btn  text-white">
+                      DELETE
+                    </button>
+                  </div>
+                  <div className="d-flex justify-content-between mb-2 mx-3 mt-4">
+                    <h2 className="text-white m-0"># 1000000</h2>
+                    <h3 className="text-white m-0">12/03/2023</h3>
+                  </div>
+                </div>
+              </li>
+              <li className="d-flex align-items-center justify-content-center mb-3">
+                <div className="bg-dark col-10 col-lg-9 rounded-4">
+                  <div className="d-flex justify-content-between mt-2 mx-3">
+                    <h3 className="text-white">Name</h3>
+                    <button className="btn  text-white">
+                      DELETE
+                    </button>
+                  </div>
+                  <div className="d-flex justify-content-between mb-2 mx-3 mt-4">
+                    <h2 className="text-white m-0"># 1000000</h2>
+                    <h3 className="text-white m-0">12/03/2023</h3>
+                  </div>
+                </div>
+              </li>
+              <li className="d-flex align-items-center justify-content-center mb-3">
+                <div className="bg-dark col-10 col-lg-9 rounded-4">
+                  <div className="d-flex justify-content-between mt-2 mx-3">
+                    <h3 className="text-white">Name</h3>
+                    <button className="btn  text-white">
+                      DELETE
+                    </button>
+                  </div>
+                  <div className="d-flex justify-content-between mb-2 mx-3 mt-4">
+                    <h2 className="text-white m-0"># 1000000</h2>
+                    <h3 className="text-white m-0">12/03/2023</h3>
+                  </div>
+                </div>
+              </li>
             </ul>
           </div>
         </div>

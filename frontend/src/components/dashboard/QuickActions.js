@@ -28,7 +28,7 @@ const QuickActions = () => {
       </div>
       <div className="m-md-1 me-1 m-0" style={style}>
               
-        <Actions svg={<svg className="mb-2" xmlns="http://www.w3.org/2000/svg" width="3.3em" height="3.3em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path fill="currentColor" d="M27.71 4.29a1 1 0 0 0-1.05-.23l-22 8a1 1 0 0 0 0 1.87l8.59 3.43L19.59 11L21 12.41l-6.37 6.37l3.44 8.59A1 1 0 0 0 19 28a1 1 0 0 0 .92-.66l8-22a1 1 0 0 0-.21-1.05Z"/></svg>} name={"Send Money"} navigateTo = {"/dashboard/wallets"}/>
+        <Actions svg={<svg className="mb-2" xmlns="http://www.w3.org/2000/svg" width="3.3em" height="3.3em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path fill="currentColor" d="M27.71 4.29a1 1 0 0 0-1.05-.23l-22 8a1 1 0 0 0 0 1.87l8.59 3.43L19.59 11L21 12.41l-6.37 6.37l3.44 8.59A1 1 0 0 0 19 28a1 1 0 0 0 .92-.66l8-22a1 1 0 0 0-.21-1.05Z"/></svg>} name={"Send Money"} navigateTo = {"/dashboard/sendmoney"}/>
       </div>
       <div className="m-md-1 me-1 m-0" style={style}>
         <Actions svg={<svg className="mb-2"  xmlns="http://www.w3.org/2000/svg" width="3.4em" height="3.4em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path fill="black" d="M16 2A14.172 14.172 0 0 0 2 16a14.172 14.172 0 0 0 14 14a14.172 14.172 0 0 0 14-14A14.172 14.172 0 0 0 16 2Zm8 15h-7v7h-2v-7H8v-2h7V8h2v7h7Z"/><path fill="none" d="M24 17h-7v7h-2v-7H8v-2h7V8h2v7h7v2z"/></svg>} name={"Add Money"} navigateTo = {"/dashboard/addmoney"}/>

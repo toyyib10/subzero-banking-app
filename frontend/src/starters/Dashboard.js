@@ -26,14 +26,14 @@ const Dashboard = () => {
   useEffect(() => {
     setemail(sessionStorage.email);   
     const loadHistory = async () => {
-      const historyPoint = "/dashboard/history"
+      const historyPoint = "http://localhost:5000/dashboard/history"
       await axios.post(historyPoint, {email, status:true}).then((result) => {
         sethistory(result.data)
         console.log(history)
       })
     }   
     const loadData = () => {
-      const getPoint =  "/dashboard/getAll"
+      const getPoint =  "http://localhost:5000/dashboard/getAll"
       
       
       axios.post(getPoint, {email}).then((result) => {
@@ -52,7 +52,7 @@ const Dashboard = () => {
       
     }
     const loadAmount = () => {
-      const transactionPoint = "/dashboard/transaction"
+      const transactionPoint = "http://localhost:5000/dashboard/transaction"
       axios.post(transactionPoint, {email}).then((transaction) => {
         if (transaction === "") {
   

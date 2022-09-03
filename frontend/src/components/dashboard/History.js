@@ -14,7 +14,7 @@ const HistoryReport = ({userinfo}) => {
   useEffect(() => {
     setemail(sessionStorage.email)
     const loadHistory = () => {
-      const endPoint = "/dashboard/history"
+      const endPoint = "http://localhost:5000/dashboard/history"
       axios.post(endPoint,{email, status: false}).then((result) => {
           sethistory(result.data)
           console.log(result.data)

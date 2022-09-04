@@ -108,7 +108,7 @@ const Main = () => {
             </div>
           </div>
           <div className="col-md-4 col-12 mt-md-0" style={merge}>
-            <TransactionReview history={history}/>
+            <TransactionReview history={history} amount={amount}/>
           </div>
       </div>
       <div className="w-100 mt-3 px-4" style={height}>

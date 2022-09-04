@@ -1,8 +1,16 @@
-import {useEffect, useState} from 'react'
+import React ,{useEffect, useState} from 'react'
 import axios from "axios"
-// import UserChart from './Chart';
+import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement} from "chart.js";
+import { Doughnut } from "react-chartjs-2"
 
-const HistoryReport = ({userinfo}) => {
+ChartJS.register(
+  ArcElement, 
+  Title, 
+  Tooltip, 
+  Legend
+)
+
+const HistoryReport = ({userinfo,amount}) => {
   const style = {
     height : "32em"
   }
@@ -30,12 +38,53 @@ const HistoryReport = ({userinfo}) => {
     color : "red"
   }
  
+  const [ChartData,setChartData] = useState({datasets : [],})
+
+  const [ChartOptions,setChartOptions] = useState({})
+
+  useEffect(() => {
+    setChartData({
+      labels: ["Balance", "Spent", "Saved"],
+      datasets: [
+        {
+          data: [Number(amount.balance), Number(amount.spent), Number(amount.saved)],
+          backgroundColor : [
+            'red',
+            'green',
+            'black'
+          ],
+          borderWidth : 0
+        }
+      ]
+    });
+    setChartOptions({
+      responsive : true,
+      plugins : {
+        legend : {
+          position : "bottom"
+        },
+        title: {
+          display : true,
+        }
+      }
+    })
+  }, [])
+
   return (
     <>
       <div className="w-100 p-3 h-100">
         <div className="bg-white shadow p-md-3 rounded-1 d-flex flex-wrap" style={style}>
-          <div className="col-lg-6 col-md-6 col-12 p-3">
-            {/* <UserChart/> */}
+          <div className="col-lg-6 col-md-6 col-12" >
+            <center>
+              {amount.balance? 
+              <div style={{width: "40%" , height:"40%"}}>
+                <Doughnut options={ChartOptions} data={ChartData}/>
+              </div>
+              : 
+              <div className="h-100 w-100 d-flex align-content-center justify-content-center pt-lg-5">
+                <h2 className="text-center mt-lg-5">No Information to display Chart</h2>
+              </div>}
+            </center> 
           </div>
           <div className="col-lg-6 col-md-6 col-12 h-100 px-3" style={over}>
             <ul type="none" className="w-100 p-0 h-50 ">

@@ -12,7 +12,7 @@ const postHistory = (req, res) => {
     } else {
       if (status) {
         let reversedHistory = result.reverse()
-        let slicedHistory = reversedHistory.slice(0,3)
+        let slicedHistory = reversedHistory.slice(0,1)
         res.send(slicedHistory)
       } else {
         let reversedHistory = result.reverse()

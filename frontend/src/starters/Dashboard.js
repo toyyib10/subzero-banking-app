@@ -103,7 +103,7 @@ const Dashboard = () => {
               <Route path="/sendmoney" element = {<SendMoney/>}/>
               <Route path="/quickactions/*" element={<DashboardAction/>}/>
               <Route path="/wallets" element={<Wallets balance={amount.balance}/>}/>
-              <Route path="/history" element={<HistoryReport userinfo={userinfo}/>}/>
+              <Route path="/history" element={<HistoryReport userinfo={userinfo} amount={amount}/>}/>
               <Route path="/profile"/>
               <Route path="/notification"/>
               <Route path="/*" element={<NotFound/>}/>

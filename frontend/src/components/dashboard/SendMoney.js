@@ -17,7 +17,7 @@ const SendMoney = () => {
 
   
   const loadData = () => {
-    const endPoint =  "http://localhost:5000/dashboard/getAll"
+    const endPoint =  "/dashboard/getAll"
     axios.post(endPoint, {email}).then((result) => {
       if (result === "") {
   
@@ -33,7 +33,7 @@ const SendMoney = () => {
   }
 
   const loadAmount = () => {
-    const transactionPoint = "http://localhost:5000/dashboard/transaction"
+    const transactionPoint = "/dashboard/transaction"
  
     axios.post(transactionPoint, {email}).then((transaction) => {
       if (transaction === "") {
@@ -71,7 +71,7 @@ const SendMoney = () => {
   const send = () => {
     if (check) {
       let email = userinfo.email
-      const endPoint = "http://localhost:5000/dashboard/sendmoney"
+      const endPoint = "/dashboard/sendmoney"
       axios.post(endPoint, {pin, username, transferamount, email}).then((result) => {
          if (result.data){
           navigate("/dashboard")  

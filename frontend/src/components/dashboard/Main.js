@@ -51,7 +51,7 @@ const Main = () => {
   const [history, sethistory] = useState([])
 
   const loadAmount = () => {
-    const transactionPoint = "http://localhost:5000/dashboard/transaction"
+    const transactionPoint = "/dashboard/transaction"
     axios.post(transactionPoint, {email}).then((transaction) => {
       if (transaction === "") {
 
@@ -63,7 +63,7 @@ const Main = () => {
     })
   }
   const loadHistory = () => {
-    const historyPoint = "http://localhost:5000/dashboard/history"
+    const historyPoint = "/dashboard/history"
     axios.post(historyPoint, {email , status: true}).then((result) => {
       if (result === "") {
 

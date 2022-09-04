@@ -26,14 +26,14 @@ const Dashboard = () => {
   useEffect(() => {
     setemail(sessionStorage.email);   
     const loadHistory = async () => {
-      const historyPoint = "http://localhost:5000/dashboard/history"
+      const historyPoint = "/dashboard/history"
       await axios.post(historyPoint, {email, status:true}).then((result) => {
         sethistory(result.data)
         console.log(history)
       })
     }   
     const loadData = () => {
-      const getPoint =  "http://localhost:5000/dashboard/getAll"
+      const getPoint =  "/dashboard/getAll"
       
       
       axios.post(getPoint, {email}).then((result) => {
@@ -101,8 +101,8 @@ const Dashboard = () => {
               <Route />
               <Route path="/addmoney" element={<AddMoney result={userinfo}/>}/>
               <Route path="/sendmoney" element = {<SendMoney/>}/>
-              <Route path="/quickactions" element={<DashboardAction/>}/>
-              <Route path="/wallets" element={<Wallets/>}/>
+              <Route path="/quickactions/*" element={<DashboardAction/>}/>
+              <Route path="/wallets" element={<Wallets balance={amount.balance}/>}/>
               <Route path="/history" element={<HistoryReport userinfo={userinfo}/>}/>
               <Route path="/profile"/>
               <Route path="/notification"/>

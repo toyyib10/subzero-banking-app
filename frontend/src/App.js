@@ -14,8 +14,8 @@ const App = () => {
   const [password,setpassword] = useState("")
   const signIn = (e) => {
     e.preventDefault()
-    const endPoint = "http://localhost:5000/signin"
-    const transactionPoint = "http://localhost:5000/dashboard/transaction"
+    const endPoint = "/signin"
+    const transactionPoint = "/dashboard/transaction"
     axios.post(endPoint, {email,password}).then((result) => {
         if (result === "") {
 
@@ -27,12 +27,13 @@ const App = () => {
               } else {
                 if (transaction.data){
                   setuserinfo(result.data);
-                  if (userinfo.image  !== ""){
-                    sessionStorage.email = transaction.data.email
-                    navigate("/dashboard")
-                  } else {
-                    sessionStorage.email = transaction.data.email
+                  if (userinfo.image  === ""){
+                    sessionStorage.email = result.data.email
                     navigate("/dashboard/completevr")
+                  } else {
+                    sessionStorage.email = result.data.email
+                    console.log(userinfo.image)
+                    navigate("/dashboard/")
                   }
                   
                 }

@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom"
 import {useState, useEffect} from "react"
 import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement} from "chart.js";
+import axios from "axios"
 import { Doughnut } from "react-chartjs-2"
 
 ChartJS.register(
@@ -11,17 +12,38 @@ ChartJS.register(
 )
 
 
-const TransactionReview = ({history, amount}) => {
+const TransactionReview = ({history}) => {
 
   const [ChartData,setChartData] = useState({datasets : [],})
   const [ChartOptions,setChartOptions] = useState({})
+  const [balance, setbalance] = useState("")
+  const [spent, setspent] = useState("")
+  const [saved, setsaved] = useState("")
+  const [email, setemail] = useState("")
+  
+  const loadAmount = () => {
+    const transactionPoint = "http://localhost:5000/dashboard/transaction"
+    axios.post(transactionPoint, {email}).then((transaction) => {
+      if (transaction === "") {
+
+      } else {
+        if (transaction.data){
+          setbalance(transaction.data.balance)
+          setspent(transaction.data.spent)
+          setsaved(transaction.data.saved)
+        }
+      }
+    })
+  }
 
   useEffect(() => {
+    setemail(sessionStorage.email);           
+    loadAmount()
     setChartData({
       labels: ["Balance", "Spent", "Saved"],
       datasets: [
         {
-          data: [amount.balance, amount.spent, amount.saved],
+          data: [balance, spent, saved],
           backgroundColor : [
             '#36B455',
             '#EF4A5B',
@@ -42,7 +64,7 @@ const TransactionReview = ({history, amount}) => {
         }
       }
     })
-  }, [])
+  }, [email, balance])
 
 
   const style = {
@@ -57,10 +79,10 @@ const TransactionReview = ({history, amount}) => {
   }
   return (
     <>
-      <div className="bg-white h-100 w-100 rounded-1 shadow mt-4 mt-md-0 p-2 pe-3">
+      <div className="bg-white h-100 w-100 rounded-1 shadow mt-4 mt-md-0 p-2 pb-0 pe-3">
         <div className="w-100 d-flex justify-content-center" style={{height:"63%"}}>
           <center style={{marginTop: "-20px"}}>
-          {amount.balance? <Doughnut options={ChartOptions} data={ChartData} height={230} width={230}/> : <div className="mt-5">
+          {balance? <Doughnut options={ChartOptions} data={ChartData} height={230} width={230}/> : <div className="mt-5">
               <h2>No information to display chart</h2>
             </div>}
             
@@ -76,7 +98,7 @@ const TransactionReview = ({history, amount}) => {
              {
                history.map((item) => (
                 <div>
-                  <li className="bg-light w-100 p-2 d-flex justify-content-between my-2">
+                  <li className="bg-light w-100 d-flex justify-content-between px-2">
                     <div>
                       <h6 className="p-0 m-0">{item.title}</h6>
                       <p  className="p-0 m-0 mt-2">{item.name}</p>

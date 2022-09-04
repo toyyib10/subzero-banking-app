@@ -10,25 +10,47 @@ ChartJS.register(
   Legend
 )
 
-const HistoryReport = ({userinfo,amount}) => {
+const HistoryReport = ({userinfo}) => {
   const style = {
     height : "32em"
   }
   const over = {
     overflow : "auto"
   }
+
   const [email, setemail] = useState("")
   const [history, sethistory] = useState([])
+  const [balance, setbalance] = useState("")
+  const [spent, setspent] = useState("")
+  const [saved, setsaved] = useState("")
+  const loadAmount = () => {
+    const transactionPoint = "http://localhost:5000/dashboard/transaction"
+    axios.post(transactionPoint, {email}).then((transaction) => {
+      if (transaction === "") {
+
+      } else {
+        if (transaction.data){
+          setbalance(transaction.data.balance)
+          setspent(transaction.data.spent)
+          setsaved(transaction.data.saved)
+        }
+      }
+    })
+  }
+  
+  const loadHistory = () => {
+    const endPoint = "/dashboard/history"
+    axios.post(endPoint,{email, status: false}).then((result) => {
+        sethistory(result.data)
+        console.log(result.data)
+    })  
+  }
+
   useEffect(() => {
     setemail(sessionStorage.email)
-    const loadHistory = () => {
-      const endPoint = "/dashboard/history"
-      axios.post(endPoint,{email, status: false}).then((result) => {
-          sethistory(result.data)
-          console.log(result.data)
-      })  
-    }
+    
     loadHistory()
+    loadAmount()
   }, [email])
 
   const color = {
@@ -39,19 +61,20 @@ const HistoryReport = ({userinfo,amount}) => {
   }
  
   const [ChartData,setChartData] = useState({datasets : [],})
-
   const [ChartOptions,setChartOptions] = useState({})
 
-  useEffect(() => {
+  
+  
+  useEffect(()  => {
     setChartData({
       labels: ["Balance", "Spent", "Saved"],
       datasets: [
         {
-          data: [Number(amount.balance), Number(amount.spent), Number(amount.saved)],
+          data: [Number(balance), Number(spent), Number(saved)],
           backgroundColor : [
-            'red',
-            'green',
-            'black'
+            '#36B455',
+            '#EF4A5B',
+            '#F2773F'
           ],
           borderWidth : 0
         }
@@ -68,7 +91,7 @@ const HistoryReport = ({userinfo,amount}) => {
         }
       }
     })
-  }, [])
+  }, [balance])
 
   return (
     <>
@@ -76,9 +99,11 @@ const HistoryReport = ({userinfo,amount}) => {
         <div className="bg-white shadow p-md-3 rounded-1 d-flex flex-wrap" style={style}>
           <div className="col-lg-6 col-md-6 col-12" >
             <center>
-              {amount.balance? 
-              <div style={{width: "40%" , height:"40%"}}>
-                <Doughnut options={ChartOptions} data={ChartData}/>
+              {balance? 
+              <div className="w-100 d-flex justify-content-center" style={{height:"63%"}}>
+                <center style={{marginTop: "-20px"}}>
+                  <Doughnut options={ChartOptions} data={ChartData} height={430} width={400}/>
+                </center>
               </div>
               : 
               <div className="h-100 w-100 d-flex align-content-center justify-content-center pt-lg-5">

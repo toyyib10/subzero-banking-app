@@ -49,21 +49,27 @@ const Main = () => {
   const [email, setemail] = useState("")
   const [amount, setamount] = useState("")
   const [history, sethistory] = useState([])
+  const [balance, setbalance] = useState("")
+  const [spent, setspent] = useState("")
+  const [saved, setsaved] = useState("")
+  
 
   const loadAmount = () => {
-    const transactionPoint = "/dashboard/transaction"
+    const transactionPoint = "http://localhost:5000/dashboard/transaction"
     axios.post(transactionPoint, {email}).then((transaction) => {
       if (transaction === "") {
 
       } else {
         if (transaction.data){
-          setamount(transaction.data)
+          setbalance(transaction.data.balance)
+          setspent(transaction.data.spent)
+          setsaved(transaction.data.saved)
         }
       }
     })
   }
   const loadHistory = () => {
-    const historyPoint = "/dashboard/history"
+    const historyPoint = "http://localhost:5000/dashboard/history"
     axios.post(historyPoint, {email , status: true}).then((result) => {
       if (result === "") {
 
@@ -85,9 +91,6 @@ const Main = () => {
     loadHistory() 
   }, [email])
 
-  let balance = amount.balance;
-  let spent = amount.spent;
-  let saved = amount.saved;
   return (
     <section style={sec}>
       <div className="w-100 d-flex flex-wrap px-md-4 px-2 pt-3" style={style}>
@@ -108,7 +111,7 @@ const Main = () => {
             </div>
           </div>
           <div className="col-md-4 col-12 mt-md-0" style={merge}>
-            <TransactionReview history={history} amount={amount}/>
+            <TransactionReview history={history} balance={balance} spent={spent} saved={saved}/>
           </div>
       </div>
       <div className="w-100 mt-3 px-4" style={height}>

@@ -52,7 +52,7 @@ const Dashboard = () => {
       
     }
     const loadAmount = () => {
-      const transactionPoint = "http://localhost:5000/dashboard/transaction"
+      const transactionPoint = "/dashboard/transaction"
       axios.post(transactionPoint, {email}).then((transaction) => {
         if (transaction === "") {
   
@@ -102,7 +102,7 @@ const Dashboard = () => {
               <Route path="/addmoney" element={<AddMoney result={userinfo}/>}/>
               <Route path="/sendmoney" element = {<SendMoney/>}/>
               <Route path="/quickactions/*" element={<DashboardAction/>}/>
-              <Route path="/wallets" element={<Wallets balance={amount.balance}/>}/>
+              <Route path="/wallets" element={<Wallets balance={amount.balance} userinfo={userinfo}/>}/>
               <Route path="/history" element={<HistoryReport userinfo={userinfo} amount={amount}/>}/>
               <Route path="/profile"/>
               <Route path="/notification"/>

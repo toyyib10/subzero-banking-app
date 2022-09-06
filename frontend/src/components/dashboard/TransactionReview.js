@@ -22,7 +22,7 @@ const TransactionReview = ({history}) => {
   const [email, setemail] = useState("")
   
   const loadAmount = () => {
-    const transactionPoint = "http://localhost:5000/dashboard/transaction"
+    const transactionPoint = "/dashboard/transaction"
     axios.post(transactionPoint, {email}).then((transaction) => {
       if (transaction === "") {
 

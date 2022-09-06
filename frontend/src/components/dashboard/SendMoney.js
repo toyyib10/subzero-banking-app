@@ -1,6 +1,5 @@
 import Input from "../sign/Input"
 import {useState, useEffect} from "react"
-import Button from "../Button"
 import "../../../node_modules/bootstrap/dist/js/bootstrap"
 import axios from "axios"
 import {useNavigate} from "react-router-dom"
@@ -10,7 +9,6 @@ const SendMoney = () => {
   const [username, setusername] = useState("")
   const [transferamount, settransferamount] = useState("")
   const [pin , setpin] = useState("")
-  const [check , setcheck] = useState(false)
   const [email, setemail] = useState("")
   const [userinfo, setuserinfo] = useState("")
   const [amount, setamount] = useState("")
@@ -52,39 +50,37 @@ const SendMoney = () => {
     loadAmount()
   }, [email]) 
 
-  const sendMoney = () => { 
+  const send = () => {
     if (transferamount !== "" && username !== ""){
-      if (Number(amount.balance) > Number(transferamount)){
-        setcheck(true)
-        document.getElementById("exampleModal").style.display = "block";
+      if (pin === userinfo.pin){
+        if (transferamount !== "" && username !== ""){
+              if (Number(amount.balance) > Number(transferamount)){
+                let email = userinfo.email
+                const endPoint = "/dashboard/sendmoney"
+                axios.post(endPoint, {pin, username, transferamount, email}).then((result) => {
+                  if (result.data){
+                    navigate("/dashboard")  
+                  } else {
+                    alert("Unable complete transaction. Please try again")
+                  } 
+                })
+              } else {
+                alert(amount)
+                alert("Insufficient Balance")
+              }
+            } else {
+              alert("Fill the information")
+            }
       } else {
-        alert("Insufficient Balance")
+        alert("Incorrect Pin")
       }
     } else {
-      alert("Fill the information")
+      alert("Complete the Information before the modal")
     }
     
-  }
-  const closeModal = () => {
-    document.getElementById("exampleModal").style.display = "none"
-  }
-  const send = () => {
-    if (check) {
-      let email = userinfo.email
-      const endPoint = "/dashboard/sendmoney"
-      axios.post(endPoint, {pin, username, transferamount, email}).then((result) => {
-         if (result.data){
-          navigate("/dashboard")  
-         } else {
-           console.log("he no work")
-         }
-        
-        console.log('he no work')
-      })
-    }
-  }
-  const style = {
-    display : "none"
+    // if () {
+    //   
+    // }
   }
   
   return (
@@ -108,25 +104,25 @@ const SendMoney = () => {
             <span>Balance</span> : <svg xmlns="http://www.w3.org/2000/svg" width="1.4em" height="1.4em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 18V7.052a1.05 1.05 0 0 1 1.968-.51l6.064 10.916a1.05 1.05 0 0 0 1.968-.51V6M5 10h14M5 14h14"/></svg> <span>{amount.balance}</span>
           </div> 
         </div>
-        <div className="mt-5 pt-2">
-          <Button sign ={sendMoney} todo={"Send Money"}/>
+        <div className="mt-5 pt-2 d-flex justify-content-center">
+          <button type="button" class="btn btn-lg text-white btn-light" data-bs-toggle="modal" data-bs-target="#exampleModalDefault" style={{backgroundColor:"rgb(172, 255, 47)"}}>
+            Send Money
+          </button>
         </div>
       </div>
      </div>
-     <div class="modal" id="exampleModal" tabindex="-1" style={style}>
-      <div class="modal-dialog" role="document">
+     <div class="modal fade" id="exampleModalDefault" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Pin</h5>
-            <button type="button" className="btn btn-light" data-dismiss="modal" aria-label="Close" onClick={closeModal}>
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <Input name={"Pin"} setvalue={setpin}/>
+          <Input name={"Pin"} type={"number"} setvalue={setpin}/>
           </div>
           <div class="modal-footer d-flex justify-content-center">
-            <Button sign ={send} todo={"Send"}/>
+            <button type="button" class="btn btn-lg text-white" onClick={send} style={{backgroundColor:"rgb(172, 255, 47)"}}>Confirm Pin</button>
           </div>
         </div>
       </div>

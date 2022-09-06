@@ -10,7 +10,8 @@ const getMoney = (req, res) => {
 }
 
 const postMoney = (req,res) => {
-  let currentDate = new Date()
+  let today = new Date()
+  let currentDate = today.toDateString();
   let e_mail = req.body.email
   let transferAmount = req.body.transferamount;
   let userName = req.body.username;

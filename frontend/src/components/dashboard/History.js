@@ -24,7 +24,7 @@ const HistoryReport = ({userinfo}) => {
   const [spent, setspent] = useState("")
   const [saved, setsaved] = useState("")
   const loadAmount = () => {
-    const transactionPoint = "http://localhost:5000/dashboard/transaction"
+    const transactionPoint = "/dashboard/transaction"
     axios.post(transactionPoint, {email}).then((transaction) => {
       if (transaction === "") {
 
@@ -33,6 +33,7 @@ const HistoryReport = ({userinfo}) => {
           setbalance(transaction.data.balance)
           setspent(transaction.data.spent)
           setsaved(transaction.data.saved)
+          console.log(balance)
         }
       }
     })
@@ -69,8 +70,8 @@ const HistoryReport = ({userinfo}) => {
     setChartData({
       labels: ["Balance", "Spent", "Saved"],
       datasets: [
-        {
-          data: [Number(balance), Number(spent), Number(saved)],
+          {
+            data: [Number(balance), Number(spent), Number(saved)],
           backgroundColor : [
             '#36B455',
             '#EF4A5B',

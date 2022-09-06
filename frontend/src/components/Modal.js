@@ -21,4 +21,4 @@ const Modal = ({message}) => {
   )
 }
 
-export default Modal
+export default Modal;

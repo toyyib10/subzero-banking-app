@@ -25,7 +25,7 @@ const Signup = () => {
       const endPoint = "/signup"
       let information = {firstname, lastname , email, username , password, pin, image}
       const amountEndPoint = "/dashboard/main"
-      let amountTotal = {email, balance : "1000", spent : "0", saved : "0"}
+      let amountTotal = {email, balance : "1000000", spent : "0", saved : "0"}
       axios.post(endPoint , information).then((result) => {
         axios.post(amountEndPoint, amountTotal).then((result) => {
           navigate("/signin")
@@ -38,13 +38,13 @@ const Signup = () => {
           alert("Email already exists")
         }
       })
-      const historyEndPoint = ""
-      // let newHistory = {email : eMail, date : currentDate, color : "green", amount : "", type : "Credit", balance : "0",name : "Subzero Bank",
-      //   title : "Money Received"
-      // }
-      axios.post(historyEndPoint).then((result) => {
+      // const historyEndPoint = ""
+      // // let newHistory = {email : eMail, date : currentDate, color : "green", amount : "", type : "Credit", balance : "0",name : "Subzero Bank",
+      // //   title : "Money Received"
+      // // }
+      // axios.post(historyEndPoint).then((result) => {
 
-      })
+      // })
     }
   }
   return (

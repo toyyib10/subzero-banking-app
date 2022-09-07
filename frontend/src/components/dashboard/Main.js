@@ -52,6 +52,7 @@ const Main = () => {
   const [balance, setbalance] = useState("")
   const [spent, setspent] = useState("")
   const [saved, setsaved] = useState("")
+  const [wallet, setwallet] = useState("")
   
 
   const loadAmount = () => {
@@ -80,6 +81,18 @@ const Main = () => {
       }
     })
   }
+  const loadWallet = () => {
+    const walletPoint = "/dashboard/history"
+    axios.post(walletPoint, {email , status: true}).then((result) => {
+      if (result === "") {
+
+      } else {
+        if (result.data){
+          setwallet(result.data)
+        }
+      }
+    })
+  }
 
   const sec = {
     height : "35em"
@@ -89,6 +102,7 @@ const Main = () => {
     setemail(sessionStorage.email);           
     loadAmount() 
     loadHistory() 
+    loadWallet()
   }, [email])
 
   return (
@@ -122,34 +136,27 @@ const Main = () => {
           </div>
           <div>
             <ul type="none" className="d-flex justify-content-between flex-wrap">
-              <li className="d-flex align-items-center col-6 pe-3 pe-sm-0">
-                <div className="bg-dark col-11 rounded-4">
-                  <div className="d-flex justify-content-between mx-2">
-                    <h3 className="text-white">Name</h3>
-                    <button className="btn  text-white">
-                      DELETE
-                    </button>
-                  </div>
-                  <div className="d-flex justify-content-between mx-2">
-                    <h3 className="text-white m-0">#1000000</h3>
-                    <h4 className="text-white m-0">12/03/2023</h4>
-                  </div>
-                </div>
-              </li>
-              <li className="d-flex align-items-center col-6 pe-3 pe-sm-0">
-                <div className="bg-dark col-11 rounded-4">
-                  <div className="d-flex justify-content-between mx-2">
-                    <h3 className="text-white">Name</h3>
-                    <button className="btn  text-white">
-                      DELETE
-                    </button>
-                  </div>
-                  <div className="d-flex justify-content-between mx-2">
-                    <h3 className="text-white m-0">#1000000</h3>
-                    <h4 className="text-white m-0">12/03/2023</h4>
-                  </div>
-                </div>
-              </li>
+              {
+                wallet? wallet.map((item) => (
+                  <li className="d-flex align-items-center col-6 pe-3 pe-sm-0">
+                    <div className="bg-dark col-11 rounded-4">
+                      <div className="d-flex justify-content-between mx-2">
+                        <h3 className="text-white">{item.name}</h3>
+                        <button className="btn  text-white">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="1.7em" height="1.7em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024"><path fill="white" d="M864 256H736v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zm-200 0H360v-72h304v72z"/></svg>
+                        </button>
+                      </div>
+                      <div className="d-flex justify-content-between mx-2">
+                        <h3 className="text-white m-0">
+                          <svg className="mb-1" xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 18V7.052a1.05 1.05 0 0 1 1.968-.51l6.064 10.916a1.05 1.05 0 0 0 1.968-.51V6M5 10h14M5 14h14"/></svg>
+                          {item.amount}
+                        </h3>
+                        <h4 className="text-white m-0">{item.date}</h4>
+                      </div>
+                    </div>
+                  </li>
+                )) : <div className="w-100 h-100 d-flex justify-content-center"><h3>No Wallet Available</h3></div>
+              }
             </ul>
           </div>
         </div>

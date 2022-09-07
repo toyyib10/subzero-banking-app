@@ -58,12 +58,19 @@ const postWallet = (req, res) => {
 
 const displayWallet = (req, res) => {
   let eMail = req.body.email
+  let status = req.body.status
   walletModel.find({email : eMail}, (err, result) => {
     if (err) {
       console.log(err)
     } else {
-      let reversedWallet = result.reverse()
-      res.send(reversedWallet)
+      if (status) {
+        let reversedWallet = result.reverse()
+        let slicedWallet = reversedHistory.slice(0,2)
+        res.send(slicedWallet)
+      } else {
+        let reversedWallet = result.reverse()
+        res.send(reversedWallet)
+      }
     }
   })
 }

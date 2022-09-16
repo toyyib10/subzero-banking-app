@@ -82,7 +82,7 @@ const Main = () => {
     })
   }
   const loadWallet = () => {
-    const walletPoint = "/dashboard/history"
+    const walletPoint = "/dashboard/wallet/display"
     axios.post(walletPoint, {email , status: true}).then((result) => {
       if (result === "") {
 
